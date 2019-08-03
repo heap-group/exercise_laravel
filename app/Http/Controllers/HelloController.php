@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 
 class HelloController extends Controller
 {
+    public function __construct()
+    {
+        config(['sample.message' => 'new message']);
+    }
     //
     public function index(Request $request)
     {
+        $configMessage = config('sample.message');
+        $configData = config('sample.data');
+
         $data = [
-            'msg' => $request->hello
+            'msg' => $configMessage,
+            'data' => $configData
         ];
 
         return view('hello.index', $data);

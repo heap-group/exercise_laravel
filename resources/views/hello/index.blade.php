@@ -8,6 +8,11 @@
 </head>
 <body>
     <h1>Hello / Index</h1>
+    <h2>config msg</h2>
     <p>{{ $msg }}</p>
+    <h2>config data</h2>
+    @foreach ($data as $item)
+    <p>{{ $item }}</p>
+    @endforeach
 </body>
 </html>
