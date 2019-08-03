@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//名前空間を指定する
+Route::namespace('Sample')->group(function () {
+
+    Route::get('/sample', 'SampleController@index');
+
+    Route::get('/sample/other', 'SampleController@other');
+});
+
 //ミドルウェアを適応する
 Route::middleware([HelloMiddleware::class])->group(function () {
 
@@ -26,6 +34,3 @@ Route::middleware([HelloMiddleware::class])->group(function () {
 
     Route::get('/hello/other', 'HelloController@other');
 });
-
-// Route::get('/hello/{id}', 'HelloController@index')
-//     ->where('id', '[0-9]+');
