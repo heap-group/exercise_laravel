@@ -1,6 +1,7 @@
 <?php
 
 use PhpParser\Node\Stmt\HaltCompiler;
+use App\Http\Middleware\HelloMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/hello', 'HelloController@index')
-//     ->name('hello');
+//ミドルウェアを適応する
+Route::middleware([HelloMiddleware::class])->group(function () {
 
-Route::get('/hello/other', 'HelloController@other');
+    Route::get('/hello', 'HelloController@index')
+        ->name('hello');
 
-Route::get('/hello/{id}', 'HelloController@index')
-    ->where('id', '[0-9]+');
+    Route::get('/hello/other', 'HelloController@other');
+});
+
+// Route::get('/hello/{id}', 'HelloController@index')
+//     ->where('id', '[0-9]+');
